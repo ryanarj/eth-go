@@ -28,7 +28,7 @@ func main() {
 
 	fmt.Println("block number", block.Number())
 
-	addr := "0x96D15F2581B92327B58cF2e70F1F28F0921807B7"
+	addr := ""
 	address := common.HexToAddress(addr)
 
 	bal, err := client.BalanceAt(context.Background(), address, nil)
