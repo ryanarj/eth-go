@@ -10,21 +10,22 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
-func generate(password string) {
+func generate(password string) string {
 	key := keystore.NewKeyStore("./wallet", keystore.StandardScryptN, keystore.StandardScryptP)
 	passord := password
 	account, err := key.NewAccount(passord)
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println(account.Address)
+	return account.URL.Path
 }
 
 func main() {
 
 	password := "password"
-	generate(password)
-	b, err := ioutil.ReadFile("./wallet/UTC--2022-09-22T19-07-47.626847000Z--e09a37bbc5527af01f10947f8bdf5d9065dd244c")
+	path := generate(password)
+
+	b, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Fatal(err)
 	}
